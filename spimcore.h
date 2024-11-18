@@ -4,7 +4,7 @@
 
 #ifndef SPIMCORE
 
-#define MEM(addr) (Mem[addr >> 2])
+#define MEM(addr) (Mem[addr >> 2]) 
 
 typedef struct
 {
