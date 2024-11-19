@@ -5,7 +5,49 @@
 /* 10 Points */
 void ALU(unsigned A,unsigned B,char ALUControl,unsigned *ALUresult,char *Zero)
 {
-    //TODO
+    //This is Thai I'm working on this
+    switch(ALUControl){
+        case 0:  //Addition
+           *ALUresult = A+B;
+            break;
+        case 1:  //Subtraction
+           *ALUresult = A-B;
+           break;
+        case 2: // < Signed
+           if(A < B){
+               *ALUresult = 1;
+           }
+           else
+               *ALUresult = 0;
+           break;
+        case 3: // < Unsigned
+           if(A < B){
+               *ALUresult = 1;
+           }
+           else
+               *ALUresult = 0;
+           break;
+        case 4: //AND
+           if(A && B){
+               *ALUresult = 1;
+           }
+           else
+               *ALUresult = 0;
+           break;
+        case 5: //OR
+           if(A || B){
+               *ALUresult = 1;
+           }
+           else
+               *ALUresult = 0;
+           break;
+        case 6: //Shift B left by 16 bits
+           *ALUresult = B << 16;
+           break;
+        case 7:  //NOT A
+           *ALUresult = (~A);
+           break;
+    }
 }
 
 /* instruction fetch */
