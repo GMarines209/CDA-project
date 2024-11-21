@@ -1,6 +1,10 @@
 #include "spimcore.h"
 
-//This is Thai I try to fill the todo code, can your guys check if there's any eror
+//Team member
+//Kevin Blanco
+//Quoc Dang
+//Thai Nguyen
+//Gabriel Marines
 
 /* ALU */
 /* 10 Points */
