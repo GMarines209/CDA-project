@@ -231,13 +231,15 @@ int ALU_operations(unsigned data1,unsigned data2,unsigned extended_value,unsigne
 int rw_memory(unsigned ALUresult,unsigned data2,char MemWrite,char MemRead,unsigned *memdata,unsigned *Mem)
 {
 
-    if (MemWrite || MemRead == 1) {
+    if (MemWrite == 1) {
         if ((ALUresult % 4) == 0)
             Mem[ALUresult >> 2] = data2;
-        
-        else
+        if (MemRead == 1)
+            if (ALUresult % 4 == 0)
+                *memdata = Mem[ALUresult >> 2];
+                else
             //halt
-            return 1;
+                return 1;
     }
     //other halt condition
     return 0;
