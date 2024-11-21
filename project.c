@@ -245,21 +245,19 @@ int rw_memory(unsigned ALUresult,unsigned data2,char MemWrite,char MemRead,unsig
 /* 10 Points */
 void write_register(unsigned r2,unsigned r3,unsigned memdata,unsigned ALUresult,char RegWrite,char RegDst,char MemtoReg,unsigned *Reg)
 {
-    // if RegWrite is activated
-    if (RegWrite == 1){
-        if (RegDst == 1){    //RegDst = 1, set r3 to ALUresult
-            Reg[r3] = ALUresult;
-            
-            if (MemtoReg == 1)     //MemtoReg active, set r3 to memdata
-                Reg[r3] = memdata;
-        }
-
-        if (RegDst == 0){      //RegDst = 0, set r2 to ALUresult
-            Reg[r2] = ALUresult;
-
-            if (MemtoReg == 1)    //MemtoReg active, set r2 to memdata
-                Reg[r2] = memdata;
-        }
+   if (RegWrite == 1) {
+      if (MemtoReg ==1 && RegDst == 1) {
+        Reg[r3] = memdata;
+      }
+      else if (MemtoReg == 1 && RegDst != 1) {
+        Reg[r2] = memdata;
+      }
+      else if (MemtoReg != 1 && RegDst == 1) {
+        Reg[r3] = ALUresult;
+      }
+      else if (MemtoReg != 1 && RegDst != 1) {
+        Reg[r2] = ALUresult;
+      }
     }
 }
 
