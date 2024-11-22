@@ -39,6 +39,7 @@ void ALU(unsigned A, unsigned B, char ALUControl, unsigned *ALUresult, char *Zer
             break;
 
         default:
+            *Zero = 0;
             return; 
     }
 
@@ -54,7 +55,7 @@ void ALU(unsigned A, unsigned B, char ALUControl, unsigned *ALUresult, char *Zer
 /* 10 Points */
 int instruction_fetch(unsigned PC, unsigned *Mem, unsigned *instruction)
 {
-    if ((PC % 4) != 0) {
+    if ((PC % 4) != 0 ) {
         return 1; 
     }
     unsigned index = PC >> 2;
@@ -150,23 +151,50 @@ int instruction_decode(unsigned op, struct_controls *controls)
 
             break;
         case 0x8:
+            controls->RegDst = 0;  
+            controls->Jump = 0;
+            controls->Branch = 0;
+            controls->MemRead = 0;
+            controls->MemWrite = 0;
+            controls->MemtoReg = 0;
             controls->RegWrite = 1;
             controls->ALUSrc = 1;
+            controls->ALUOp = 0;  
             break;
         case 0xf:
+            controls->RegDst = 0;  
+            controls->Jump = 0;
+            controls->Branch = 0;
+            controls->MemRead = 0;
+            controls->MemWrite = 0;
+            controls->MemtoReg = 0;
             controls->RegWrite = 1;
-            controls->ALUOp = 6;
             controls->ALUSrc = 1;
+            controls->ALUOp = 6;  
             break;
         case 0xa:
-            controls->ALUOp = 2;
+            controls->RegDst = 0;  
+            controls->Jump = 0;
+            controls->Branch = 0;
+            controls->MemRead = 0;
+            controls->MemWrite = 0;
+            controls->MemtoReg = 0;
             controls->RegWrite = 1;
             controls->ALUSrc = 1;
+            controls->ALUOp = 2;  
+
             break;
         case 0xb:
-            controls->ALUOp = 3;
+            controls->RegDst = 0;  
+            controls->Jump = 0;
+            controls->Branch = 0;
+            controls->MemRead = 0;
+            controls->MemWrite = 0;
+            controls->MemtoReg = 0;
             controls->RegWrite = 1;
             controls->ALUSrc = 1;
+            controls->ALUOp = 3;
+
             break;
         default:
             return 1; 
